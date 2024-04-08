@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const NewToDisplay = () => {
+const ForYou = () => {
   const [currentNews, setCurrentNews] = useState([]);
 
   const apiUrl =
-    "https://newsapi.org/v2/everything?q=nigerian&apiKey=164d13f57808465192e65a3d27f04f35";
-  // "https://newsapi.org/v2/top-headlines?q=sex&apiKey=164d13f57808465192e65a3d27f04f35";
+    // "https://newsapi.org/v2/everything?country=ng&apiKey=164d13f57808465192e65a3d27f04f35";
+    "https://newsapi.org/v2/top-headlines?country=us&apiKey=164d13f57808465192e65a3d27f04f35";
 
   useEffect(() => {
     const getNews = async () => {
@@ -57,14 +57,14 @@ const NewToDisplay = () => {
                 </p>
               </div>
 
-              <h1 className=" text-wrap font-semibold mb-2 mr-2 ">{Api.title}</h1>
-              <p className="max-sm:text-sm max-sm:leading-5 font-extralight mr-5">
+              <h1 className=" text-wrap font-semibold mb-2  ">{Api.title}</h1>
+              <p className="max-sm:text-sm max-sm:leading-5 font-medium mr-5">
                 {typeof Api.content === "string"
                   ? Api.content.substring(0, 100) + "..."
                   : Api.content}
               </p>
               <div className=" my-2">
-                <Link to={Api.url} className=" px-2 rounded-sm  text-white bg-blue-600 ">
+                <Link to={Api.url} className="ring-1">
                   Read more
                 </Link>
               </div>
@@ -77,4 +77,4 @@ const NewToDisplay = () => {
   );
 };
 
-export default NewToDisplay;
+export default ForYou;

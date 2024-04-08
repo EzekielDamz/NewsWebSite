@@ -1,6 +1,10 @@
 import { IoSearch } from "react-icons/io5";
 
+
 const Search = () => {
+
+
+  // search for a data
   return (
     <div className="text-2xl mt-1 flex">
       <input type="text" name="" className="ring-2" />

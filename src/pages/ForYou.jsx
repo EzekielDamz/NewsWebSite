@@ -1,10 +1,17 @@
 import MobileNav from "../Components/Header";
-import NewToDisplay from "../Components/NewToDisplay";
+import Read from "../Components/Read";
+import ForYourApi from "../Components/ForYou";
 const ForYou = () => {
   return (
     <section>
-      <NewToDisplay />
-      <MobileNav />
+      <div className="px-[5rem] pt-10 bg-[#EDEDED]  sm:px-[2rem] max-sm:px-[1rem] ">
+        <Read content="Read More" />
+        <ForYourApi />
+      </div>
+
+      <div className="sticky z-0 bottom-0">
+        <MobileNav />
+      </div>
     </section>
   );
 };
