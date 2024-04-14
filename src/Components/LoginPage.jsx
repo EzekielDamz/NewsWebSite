@@ -83,7 +83,7 @@ const Signup = () => {
       console.log(user);
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("user", JSON.stringify(state.password));
+      localStorage.setItem("user", JSON.stringify(state.Email));
       navigate("/today")
     } catch (error) {
       alert(error);

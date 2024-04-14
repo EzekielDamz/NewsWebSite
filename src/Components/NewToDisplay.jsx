@@ -1,39 +1,32 @@
 import { Link } from "react-router-dom";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import { useNewsContext } from "../context/NewsContext";
+import Loading from "../Components/Loading";
 
 const NewToDisplay = () => {
-  const [currentNews, setCurrentNews] = useState([]);
+  const { stateNews } = useNewsContext();
 
-  const apiUrl =
-    "https://newsapi.org/v2/everything?q=nigerian&apiKey=164d13f57808465192e65a3d27f04f35";
-  // "https://newsapi.org/v2/top-headlines?q=sex&apiKey=164d13f57808465192e65a3d27f04f35";
+  const randomApiData = (array) => {
+    if (!array) return [];
+    const getRandDate = array.sort(() => Math.random() - 0.5);
+    return getRandDate;
+    // .splice(0, count);
+  };
+  const newsData = randomApiData(stateNews);
 
   useEffect(() => {
-    const getNews = async () => {
-      try {
-        const apiData = await axios.get(apiUrl);
-        console.log(apiData.data.articles);
-        const displayCurrentNews = apiData.data.articles;
-        setCurrentNews(
-          displayCurrentNews.filter(
-            (displayCurrentNews) => displayCurrentNews.urlToImage !== null
-          )
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getNews();
-  }, []);
+    stateNews;
+  }, [stateNews]);
 
-  const randomApiData = (arr) => {
-    const getRandDate = arr.sort(() => Math.random() - 0.5);
-    return getRandDate;
-  };
-  const newsData = randomApiData(currentNews);
+  if (!newsData.length) {
+    return (
+      <div className="flex justify-center py-[10rem]">
+        <Loading />
+      
+      </div>
+    );
 
+  }
   return (
     <main>
       <div className="grid xl:grid-cols-4 gap-5 md:grid-cols-3 sm:grid-cols-2 sm:gap-6 max-sm:gap-8 max-sm:grid-cols-1">
@@ -56,19 +49,23 @@ const NewToDisplay = () => {
                     : Api.author}
                 </p>
               </div>
-
-              <h1 className=" text-wrap font-semibold mb-2 mr-2 ">{Api.title}</h1>
+              <h1 className=" text-wrap font-semibold mb-2 mr-2 ">
+                {Api.title}
+              </h1>
               <p className="max-sm:text-sm max-sm:leading-5 font-extralight mr-5">
                 {typeof Api.content === "string"
                   ? Api.content.substring(0, 100) + "..."
                   : Api.content}
               </p>
               <div className=" my-2">
-                <Link to={Api.url} className=" px-2 rounded-sm  text-white bg-blue-600 ">
+                <Link
+                  to={Api.url}
+                  className=" px-2 rounded-sm  text-white bg-blue-600 "
+                >
                   Read more
                 </Link>
               </div>
-              <p>{Api.publishedAt}</p>
+              <p className="font-extralight">{Api.publishedAt}</p>
             </div>
           </div>
         ))}
@@ -76,5 +73,4 @@ const NewToDisplay = () => {
     </main>
   );
 };
-
 export default NewToDisplay;

@@ -89,6 +89,7 @@ const Signup = () => {
       localStorage.setItem("token", user.accessToken);
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("userName", JSON.stringify(state.userName));
+      
       navigate("/login");
     } catch (error) {
       console.log(error);

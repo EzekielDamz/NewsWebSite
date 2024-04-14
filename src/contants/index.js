@@ -1,5 +1,6 @@
 import { newsImage } from "../assets/images";
 import { newsbg } from "../assets/images";
+import { IoIosToday } from "react-icons/io";
 
 export const NewApi = [
   {
@@ -66,4 +67,10 @@ export const NewApi = [
     Data: "2024-2-12",
     Author: "Author",
   },
+];
+
+export const Navlinks = [
+  { Icon: IoIosToday, to: "/today", nav: "Today", alt: "menu icons" },
+  { Icon: IoIosToday, to: "/foryou", nav: "For You", alt: "menu icons" },
+  { Icon: IoIosToday, to: "/readlater", nav: "For Later", alt: "menu icons" },
 ];

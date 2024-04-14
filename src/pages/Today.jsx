@@ -1,5 +1,4 @@
 import BreakingNewspage from "../Components/BreakingNewspage";
-
 import MobileNav from "../Components/Header";
 import NewToDisplay from "../Components/NewToDisplay";
 

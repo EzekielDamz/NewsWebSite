@@ -1,41 +1,25 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom"
-const BreakingNewspage = () => {
-  // // const [loading, setLoading] = useState(false)
-  // // const [error, setError] = useState("")
-  const [data, setData] = useState([]);
+import { useEffect } from "react";
 
-  const Url =
-    "https://newsapi.org/v2/top-headlines?q=law&apiKey=164d13f57808465192e65a3d27f04f35";
-    // "https://newsapi.org/v2/everything?q=nigerian&apiKey=164d13f57808465192e65a3d27f04f35";
+import { Link } from "react-router-dom";
+import Read from "./Read";
+import { useNewsContext } from "../context/NewsContext";
+const BreakingNewspage = () => {
+  const { stateNews } = useNewsContext();
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(Url);
-        const newData = response.data.articles;
-        // console.log(response.data);
-        setData(newData.filter((newsData) => newsData.urlToImage !== null));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+    stateNews;
+  }, [stateNews]);
 
   const getRandomNew = (array, count) => {
     const shuttleNew = array.sort(() => Math.random() - 0.5);
     return shuttleNew.slice(0, count);
   };
 
+  const randomArray = getRandomNew(stateNews, 10);
 
-  const randomArray = getRandomNew(data, 10);
   return (
     <section className="">
-      <h1 className="text-2xl font-semibold sticky z-0 top-0 ">
-        Breaking News
-      </h1>
-      {/* {data && ( */}
+      <Read content="Breaking News" />
       <div className=" overflow-x-auto whitespace-nowrap scrollbar-hide ">
         {randomArray.map((News) => (
           <div key={News.id} className="w-[300px] inline-block p-2">
@@ -64,6 +48,7 @@ const BreakingNewspage = () => {
                   Read more
                 </Link>
               </div>
+              <p className="font-extralight">{News.publishedAt}</p>
             </div>
           </div>
         ))}

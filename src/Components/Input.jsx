@@ -17,7 +17,7 @@ const Input = () => {
   const [showSearch, setShowSearch] = useState(false);
 
   const closeSearch = () => {
-    console.log(showSearch);
+    // console.log(showSearch);
     setShowSearch(!showSearch);
   };
 

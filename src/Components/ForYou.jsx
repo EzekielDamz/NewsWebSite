@@ -1,38 +1,17 @@
 import { Link } from "react-router-dom";
-
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useNewsContext } from "../context/NewsContext";
 
 const ForYou = () => {
-  const [currentNews, setCurrentNews] = useState([]);
-
-  const apiUrl =
-    // "https://newsapi.org/v2/everything?country=ng&apiKey=164d13f57808465192e65a3d27f04f35";
-    "https://newsapi.org/v2/top-headlines?country=us&apiKey=164d13f57808465192e65a3d27f04f35";
-
-  useEffect(() => {
-    const getNews = async () => {
-      try {
-        const apiData = await axios.get(apiUrl);
-        console.log(apiData.data.articles);
-        const displayCurrentNews = apiData.data.articles;
-        setCurrentNews(
-          displayCurrentNews.filter(
-            (displayCurrentNews) => displayCurrentNews.urlToImage !== null
-          )
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getNews();
-  }, []);
+  const { stateNews } = useNewsContext();
+  // console.log(stateNews.pub);
+  // const { articles } = stateNews();
+  // console.log(articles)
 
   const randomApiData = (arr) => {
     const getRandDate = arr.sort(() => Math.random() - 0.5);
     return getRandDate;
   };
-  const newsData = randomApiData(currentNews);
+  const newsData = randomApiData(stateNews);
 
   return (
     <main>
@@ -64,11 +43,14 @@ const ForYou = () => {
                   : Api.content}
               </p>
               <div className=" my-2">
-                <Link to={Api.url} className="ring-1">
+                <Link
+                  to={Api.url}
+                  className="px-2 rounded-sm  text-white bg-blue-600 "
+                >
                   Read more
                 </Link>
               </div>
-              <p>{Api.publishedAt}</p>
+              <p className="font-extralight">{Api.publishedAt}</p>
             </div>
           </div>
         ))}
