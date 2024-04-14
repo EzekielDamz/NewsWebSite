@@ -48,7 +48,7 @@ const Header = () => {
 
   useEffect(() => {
     if (formSubmitted) {
-      const apiUrl = `https://newsapi.org/v2/everything?q=sources=nigeria&apiKey=5d920bf1f48b470087b3ca9701874aa6`;
+      const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=5d920bf1f48b470087b3ca9701874aa6`;
       const getNews = async () => {
         try {
           const apiData = await axios.get(apiUrl);
@@ -74,7 +74,7 @@ const Header = () => {
         //  e.preventDefault()
         console.log(inputText);
         try {
-          const apiUrl = `https://newsapi.org/v2/everything?q=sources=${inputText}&apiKey=5d920bf1f48b470087b3ca9701874aa6`;
+          const apiUrl = `https://newsapi.org/v2/everything?q=${inputText}&apiKey=5d920bf1f48b470087b3ca9701874aa6`;
           const apiData = await axios.get(apiUrl);
           console.log(apiData.data);
           const displayCurrentNews = apiData.data.articles;
