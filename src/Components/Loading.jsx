@@ -12,18 +12,6 @@ const Loading = () => {
           wrapperClass=""
         />
       );
-//   return (
-//     <Oval
-//       visible={true}
-//       height="80"
-//       width="80"
-//       // radius="9"
-//       color="green"
-//       ariaLabel="oval-loading"
-//       wrapperStyle
-//       wrapperClass
-//     />
-//   );
 };
 
 export default Loading;

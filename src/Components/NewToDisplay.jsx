@@ -19,8 +19,8 @@ const NewToDisplay = () => {
   }, [stateNews]);
 
   if (!newsData.length) {
-    return (
-      <div className="flex justify-center py-[10rem]">
+    return ( 
+      <div className="flex justify-center pt-[20rem] h-[100svh]">
         <Loading />
       
       </div>

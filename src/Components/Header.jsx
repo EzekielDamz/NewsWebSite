@@ -74,7 +74,7 @@ const Header = () => {
         //  e.preventDefault()
         console.log(inputText);
         try {
-          const apiUrl = `https://newsapi.org/v2/everything?q=${inputText}&apiKey=5d920bf1f48b470087b3ca9701874aa6`;
+          const apiUrl = `https://newsapi.org/v2/everything?q=${inputText}&apiKey=${import.meta.env.VITE_API_KEY}`;
           const apiData = await axios.get(apiUrl);
           console.log(apiData.data);
           const displayCurrentNews = apiData.data.articles;

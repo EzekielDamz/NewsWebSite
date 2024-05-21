@@ -1,3 +1,4 @@
+
 import { createContext, useState, useContext } from "react";
 
 export const NewsContext = createContext();
