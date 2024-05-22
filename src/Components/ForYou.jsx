@@ -3,9 +3,6 @@ import { useNewsContext } from "../context/NewsContext";
 
 const ForYou = () => {
   const { stateNews } = useNewsContext();
-  // console.log(stateNews.pub);
-  // const { articles } = stateNews();
-  // console.log(articles)
 
   const randomApiData = (arr) => {
     const getRandDate = arr.sort(() => Math.random() - 0.5);

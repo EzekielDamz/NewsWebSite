@@ -21,8 +21,8 @@ const BreakingNewspage = () => {
     <section className="">
       <Read content="Breaking News" />
       <div className=" overflow-x-auto whitespace-nowrap scrollbar-hide ">
-        {randomArray.map((News) => (
-          <div key={News.id} className="w-[300px] inline-block p-2">
+        {randomArray.map((News, index) => (
+          <div key={index} className="w-[300px] inline-block p-2">
             <div className="bg-white p-4  rounded-xl  ">
               {News.urlToImage && (
                 <img className="" src={News.urlToImage} alt="New image " />

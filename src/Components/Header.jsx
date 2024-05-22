@@ -37,22 +37,20 @@ const Header = () => {
   const menuButton = () => {
     setShow(!show);
   };
-
   const closeSearch = () => {
     setShowSearch(false);
   };
-
   const openSearch = () => {
     setShowSearch(true);
   };
 
   useEffect(() => {
     if (formSubmitted) {
-      const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=5d920bf1f48b470087b3ca9701874aa6`;
+      const apiUrl = `http://localhost:5000/api/news`;
       const getNews = async () => {
         try {
           const apiData = await axios.get(apiUrl);
-          const displayCurrentNews = apiData.data.articles;
+          const displayCurrentNews = apiData.data;
           setStateNews(
             displayCurrentNews.filter(
               (displayCurrentNews) => displayCurrentNews.urlToImage !== null
@@ -74,7 +72,7 @@ const Header = () => {
         //  e.preventDefault()
         console.log(inputText);
         try {
-          const apiUrl = `https://newsapi.org/v2/everything?q=${inputText}&apiKey=${import.meta.env.VITE_API_KEY}`;
+          const apiUrl = `http://localhost:5000/api/news?q=${inputText}`;
           const apiData = await axios.get(apiUrl);
           console.log(apiData.data);
           const displayCurrentNews = apiData.data.articles;
