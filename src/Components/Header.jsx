@@ -92,7 +92,7 @@ const Header = () => {
   }, [inputText, formSubmitted, setDisplayData, setStateData, setStateNews]);
 
   return (
-    <nav className="max-sm:bg-white max-sm:flex max-sm:justify-between max-sm:px-[1rem] max-sm:mt-5 xl:hidden lg:hidden max-md:hidden sm:hidden">
+    <nav className="bg-white flex justify-between px-[1rem] mt-5 xl:hidden lg:hidden w-full" >
       <div className="flex">
         <button className="text-2xl relative" onClick={menuButton}>
           {show ? <IoClose /> : <RiMenu4Line />}
@@ -107,9 +107,9 @@ const Header = () => {
           </motion.div>
         )}
       </div>
-      <div className="bg-[#EDEDED] flex gap-5 rounded-lg my-2 py-3 ">
+      <div className="bg-[#EDEDED] flex gap-5 rounded-lg my-2 py-3  ">
         {Navlinks.map((navs, index) => (
-          <div key={index} className="my-1 pt-2 mr-1 ml-4">
+          <div key={index} className="my-1 pt-2 mr-1 ml-4 max-w-full">
             <NavLink
               to={navs.to}
               className={({ isActive }) =>

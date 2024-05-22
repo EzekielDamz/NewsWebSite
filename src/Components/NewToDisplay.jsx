@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useNewsContext } from "../context/NewsContext";
-import Loading from "../Components/Loading";
+// import Loading from "../Components/Loading";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const NewToDisplay = () => {
   const { stateNews } = useNewsContext();
@@ -19,13 +20,13 @@ const NewToDisplay = () => {
   }, [stateNews]);
 
   if (!newsData.length) {
-    return ( 
-      <div className="flex justify-center pt-[20rem] h-[100svh]">
-        <Loading />
-      
-      </div>
+    return (
+      <SkeletonTheme baseColor="#ebebeb" highlightColor="#444">
+        <p>
+          <Skeleton count={3} />
+        </p>
+      </SkeletonTheme>
     );
-
   }
   return (
     <main>
