@@ -9,7 +9,6 @@ const app = express();
 const YOUR_API_KEY = process.env.NEWS_API_KEY;
 const port = process.env.YOUR_API_KEY || 5000;
 
-
 // Function to fetch news data from the News API
 const fetchNewsData = async () => {
   const url = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${YOUR_API_KEY}`;
@@ -23,11 +22,15 @@ const fetchNewsData = async () => {
 };
 
 // API endpoint to retrieve news data
+const allowedOrigins =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5174"
+    : "https://news-web-site-ebon.vercel.app";
 app.get("/api/news", async (req, res) => {
-  
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5174");
-  res.setHeader("Access-Control-Allow-Methods", "GET"); 
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type"); 
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
+  // res.setHeader("Access-Control-Allow-Origin", "http://localhost:5174");
+  // res.setHeader("Access-Control-Allow-Methods", "GET");
+  // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   try {
     const newsData = await fetchNewsData();
