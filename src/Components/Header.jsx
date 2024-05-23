@@ -46,11 +46,14 @@ const Header = () => {
 
   useEffect(() => {
     if (formSubmitted) {
-      const apiUrl = `http://localhost:5000/api/news`;
+      // const apiUrl = `http://localhost:5000/api/news`;
+      const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${
+        import.meta.env.VITE_API_KEY
+      }`;
       const getNews = async () => {
         try {
           const apiData = await axios.get(apiUrl);
-          const displayCurrentNews = apiData.data;
+          const displayCurrentNews = apiData.data.articles;
           setStateNews(
             displayCurrentNews.filter(
               (displayCurrentNews) => displayCurrentNews.urlToImage !== null
@@ -72,7 +75,10 @@ const Header = () => {
         //  e.preventDefault()
         console.log(inputText);
         try {
-          const apiUrl = `http://localhost:5000/api/news?q=${inputText}`;
+          // const apiUrl = `http://localhost:5000/api/news?q=${inputText}`;
+          const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${
+            import.meta.env.VITE_API_KEY
+          }`;
           const apiData = await axios.get(apiUrl);
           console.log(apiData.data);
           const displayCurrentNews = apiData.data.articles;
@@ -92,7 +98,7 @@ const Header = () => {
   }, [inputText, formSubmitted, setDisplayData, setStateData, setStateNews]);
 
   return (
-    <nav className="bg-white flex justify-between px-[1rem] mt-5 xl:hidden lg:hidden w-full" >
+    <nav className="bg-white flex justify-between px-[1rem] mt-5 xl:hidden lg:hidden w-full">
       <div className="flex">
         <button className="text-2xl relative" onClick={menuButton}>
           {show ? <IoClose /> : <RiMenu4Line />}
