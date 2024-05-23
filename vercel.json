@@ -1,8 +1,7 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/!(api|.*)", "destination": "/index.html" } 
-  ],
-  "rewrite": [{ "source": "/(.*)", "destination": "/api/news" }]
+    { "source": "/!(api|.*)", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/api/news" }
+  ]
 }
-
