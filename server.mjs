@@ -3,6 +3,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 import cors from "cors";
 dotenv.config();
+// app.use(cors());
 const app = express();
 const YOUR_API_KEY = process.env.NEWS_API_KEY;
 const port = process.env.PORT || 5000;
@@ -16,15 +17,13 @@ const fetchNewsData = async () => {
     return [];
   }
 };
-// const allowedOrigins =
-// "http://localhost:5174/",
-// "https://news-web-site-ebon.vercel.app/",
-// ];
-app.use(
-  cors({
-    origin: ["http://localhost:5174", "https://news-web-site-ebon.vercel.app"],
-  })
-);
+
+const corsOptions = [
+  "http://localhost:513/",
+  "https://news-web-site-ebon.vercel.app",
+];
+
+app.use(cors(corsOptions));
 app.get("/api/news", async (req, res) => {
   try {
     const newsData = await fetchNewsData();
