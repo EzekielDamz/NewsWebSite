@@ -7,6 +7,12 @@ dotenv.config();
 const app = express();
 const YOUR_API_KEY = process.env.NEWS_API_KEY;
 const port = process.env.PORT || 5000;
+
+const corsOptions = [
+  "http://localhost:5173/",
+  "https://news-web-site-ebon.vercel.app",
+];
+app.use(cors(corsOptions));
 const fetchNewsData = async () => {
   const url = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${YOUR_API_KEY}`;
   try {
@@ -17,13 +23,6 @@ const fetchNewsData = async () => {
     return [];
   }
 };
-
-const corsOptions = [
-  "http://localhost:513/",
-  "https://news-web-site-ebon.vercel.app",
-];
-
-app.use(cors(corsOptions));
 app.get("/api/news", async (req, res) => {
   try {
     const newsData = await fetchNewsData();
