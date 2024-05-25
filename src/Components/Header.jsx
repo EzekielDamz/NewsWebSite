@@ -9,15 +9,17 @@ import { motion } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import { FiSend } from "react-icons/fi";
 import Modal from "react-modal";
-import axios from "axios";
+// import axios from "axios";
 import { useNewsContext } from "../context/NewsContext";
+import { News } from "../contants";
 
 const Header = () => {
   const [inputText, setInputText] = useState("");
-  const { setStateData, setStateNews, setDisplayData } = useNewsContext();
+  // const { setStateData, setStateNews, setDisplayData } = useNewsContext();
+  const {  setStateNews } = useNewsContext();
   const [showSearch, setShowSearch] = useState(false);
   const [show, setShow] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(true);
+  // const [formSubmitted, setFormSubmitted] = useState(true);
 
   const customStyles = {
     content: {
@@ -45,57 +47,58 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (formSubmitted) {
-      // const apiUrl = `http://localhost:5000/api/news`;
-      const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${
-        import.meta.env.VITE_API_KEY
-      }`;
-      const getNews = async () => {
-        try {
-          const apiData = await axios.get(apiUrl);
-          const displayCurrentNews = apiData.data.articles;
-          setStateNews(
-            displayCurrentNews.filter(
-              (displayCurrentNews) => displayCurrentNews.urlToImage !== null
-            )
-          );
-          setDisplayData(setStateData);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      getNews();
-      setFormSubmitted(true); // Reset formSubmitted after form submission
-    }
-  }, [formSubmitted, setStateData, setStateNews, setDisplayData]);
 
-  useEffect(() => {
-    if (inputText && formSubmitted) {
-      const Submit = async () => {
-        //  e.preventDefault()
-        console.log(inputText);
-        try {
-          // const apiUrl = `http://localhost:5000/api/news?q=${inputText}`;
-          const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${
-            import.meta.env.VITE_API_KEY
-          }`;
-          const apiData = await axios.get(apiUrl);
-          console.log(apiData.data);
-          const displayCurrentNews = apiData.data.articles;
-          setStateNews(
-            displayCurrentNews.filter(
-              (displayCurrentNews) => displayCurrentNews.urlToImage !== null
-            )
-          );
-          setDisplayData(setStateData);
-        } catch (error) {
-          alert(error);
-        }
-      };
-      Submit();
-      setFormSubmitted(false);
-    }
-  }, [inputText, formSubmitted, setDisplayData, setStateData, setStateNews]);
+     setStateNews(News)
+    //   if (formSubmitted) {
+    // const apiUrl = `http://localhost:5000/api/news`;
+    // const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${
+    //   import.meta.env.VITE_API_KEY
+    // }`;
+    // const getNews = async () => {
+    //   try {
+    //     const apiData = await axios.get(News);
+    // const displayCurrentNews = News.data.articles;
+    // setStateNews(
+    //   News.filter(
+    //     (displayCurrentNews) => displayCurrentNews.urlToImage !== null
+    //   )
+    // );
+    // setDisplayData(setStateData);
+    // console.log(setStateData);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    //     getNews();
+    //     setFormSubmitted(true); // Reset formSubmitted after form submission
+    //   }
+  }, [setStateNews]);
+
+  // useEffect(() => {
+  //   if (inputText && formSubmitted) {
+  //     const Submit = async () => {
+  //        e.preventDefault()
+  //       console.log(inputText);
+  //       try {
+  // const apiUrl = `http://localhost:5000/api/news?q=${inputText}`;
+  // const apiUrl = `https://newsapi.org/v2/everything?q=nigeria&apiKey=${
+  //   import.meta.env.VITE_API_KEY
+  // }`;
+  // const apiData = await axios.get(News);
+  // console.log(apiData.data.articles);
+  // const displayCurrentNews = apiData.data;
+  // setStateNews(
+  //   News.filter((displayCurrentNews) => displayCurrentNews.urlToImage !== null)
+  // );
+  // setDisplayData(setStateData);
+  //       } catch (error) {
+  //         alert(error);
+  //       }
+  //     };
+  //     Submit();
+  //     setFormSubmitted(false);
+  //   }
+  // }, [inputText, formSubmitted, setDisplayData, setStateData, setStateNews]);
 
   return (
     <nav className="bg-white flex justify-between px-[1rem] mt-5 xl:hidden lg:hidden w-full">
@@ -145,7 +148,7 @@ const Header = () => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                setFormSubmitted(true);
+                // setFormSubmitted(true);
               }}
             >
               <div className="flex gap-5">

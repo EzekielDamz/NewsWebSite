@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNewsContext } from "../context/NewsContext";
+// import { News } from "../contants";
 
 const ForYou = () => {
   const { stateNews } = useNewsContext();

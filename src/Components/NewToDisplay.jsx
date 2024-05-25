@@ -1,23 +1,27 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useNewsContext } from "../context/NewsContext";
-// import Loading from "../Components/Loading";
+import { newsImage } from "../assets/images/index";
+import { useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const NewToDisplay = () => {
   const { stateNews } = useNewsContext();
+  // const [image, setImage] = useState(false);
 
-  const randomApiData = (array) => {
+  const randomApiData = (array, count) => {
     if (!array) return [];
     const getRandDate = array.sort(() => Math.random() - 0.5);
-    return getRandDate;
-    // .splice(0, count);
+    return getRandDate.splice(0, count);
+    //
   };
-  const newsData = randomApiData(stateNews);
+  const newsData = randomApiData(stateNews, 30);
+  // console.log(newsData);
 
-  useEffect(() => {
-    stateNews;
-  }, [stateNews]);
+  // useEffect(() => {
+  //   stateNews;
+  // console.log(stateNews);
+  // }, [stateNews]);
 
   if (!newsData.length) {
     return (
@@ -37,10 +41,11 @@ const NewToDisplay = () => {
             className="w-[100%] p-4 shadow-2xl rounded-xl bg-[#F5F5F5] max-sm:flex  max-sm:flex-row-reverse max-sm:shadow-2xl "
           >
             <img
-              src={Api.urlToImage}
+              src={Api.urlToImage === null ? newsImage : Api.urlToImage}
               alt="News image"
               className=" w-[100%] rounded-xl max-sm:w-[40%]"
             />
+
             <div className=" ">
               <div className="flex">
                 <br />

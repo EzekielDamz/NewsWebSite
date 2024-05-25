@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import { News } from "../contants";
 import { Link } from "react-router-dom";
 import Read from "./Read";
 import { useNewsContext } from "../context/NewsContext";
