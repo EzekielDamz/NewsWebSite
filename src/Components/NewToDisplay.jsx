@@ -7,21 +7,15 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const NewToDisplay = () => {
   const { stateNews } = useNewsContext();
-  // const [image, setImage] = useState(false);
+  const [image, setImage] = useState(null);
 
   const randomApiData = (array, count) => {
     if (!array) return [];
     const getRandDate = array.sort(() => Math.random() - 0.5);
     return getRandDate.splice(0, count);
-    //
+  
   };
   const newsData = randomApiData(stateNews, 30);
-  // console.log(newsData);
-
-  // useEffect(() => {
-  //   stateNews;
-  // console.log(stateNews);
-  // }, [stateNews]);
 
   if (!newsData.length) {
     return (
@@ -32,6 +26,7 @@ const NewToDisplay = () => {
       </SkeletonTheme>
     );
   }
+
   return (
     <main>
       <div className="grid xl:grid-cols-4 gap-5 md:grid-cols-3 sm:grid-cols-2 sm:gap-6 max-sm:gap-8 max-sm:grid-cols-1">
@@ -40,12 +35,18 @@ const NewToDisplay = () => {
             key={index}
             className="w-[100%] p-4 shadow-2xl rounded-xl bg-[#F5F5F5] max-sm:flex  max-sm:flex-row-reverse max-sm:shadow-2xl "
           >
-            <img
-              src={Api.urlToImage === null ? newsImage : Api.urlToImage}
+            {Api.urlToImage ? (
+             <img
+              src={Api.urlToImage}
               alt="News image"
               className=" w-[100%] rounded-xl max-sm:w-[40%]"
             />
-
+            ) :  <img
+              src={newsImage}
+              alt="News image"
+              className=" w-[100%] rounded-xl max-sm:w-[40%]"
+            />}
+           
             <div className=" ">
               <div className="flex">
                 <br />

@@ -37,7 +37,7 @@ const BreakingNewspage = () => {
               </div>
               <p className="text-wrap font-extralight">
                 {typeof News.description === "string"
-                  ? News.description.substring(0, 100) + "..."
+                  ? News.description.substring(0, 50) + "..."
                   : News.description}
               </p>
               <div className=" my-2">
